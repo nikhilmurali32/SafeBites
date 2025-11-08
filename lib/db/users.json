@@ -1,0 +1,639 @@
+{
+  "users": {
+    "demo_user_1": {
+      "id": "demo_user_1",
+      "email": "jane@example.com",
+      "name": "Jane Doe",
+      "picture": "https://ui-avatars.com/api/?name=Jane+Doe",
+      "allergies": [
+        "peanuts",
+        "soy"
+      ],
+      "dietGoals": [
+        "vegan",
+        "organic"
+      ],
+      "avoidIngredients": [
+        "hfcs",
+        "msg"
+      ],
+      "createdAt": "2024-01-15T10:30:00Z",
+      "scans": [
+        {
+          "id": "scan_1",
+          "productName": "Organic Almond Milk",
+          "brand": "Nature's Best",
+          "image": "🥛",
+          "safetyScore": 95,
+          "isSafe": true,
+          "timestamp": "2024-11-08T08:00:00Z",
+          "ingredients": [
+            {
+              "name": "Filtered Water",
+              "status": "safe",
+              "reason": "Pure and essential hydration base"
+            },
+            {
+              "name": "Organic Almonds",
+              "status": "safe",
+              "reason": "Healthy source of protein and good fats"
+            },
+            {
+              "name": "Sea Salt",
+              "status": "safe",
+              "reason": "Natural mineral, within healthy limits"
+            }
+          ]
+        },
+        {
+          "id": "scan_2",
+          "productName": "Whole Wheat Bread",
+          "brand": "Baker's Choice",
+          "image": "🍞",
+          "safetyScore": 88,
+          "isSafe": true,
+          "timestamp": "2024-11-08T03:00:00Z",
+          "ingredients": [
+            {
+              "name": "Whole Wheat Flour",
+              "status": "safe",
+              "reason": "Nutritious whole grain"
+            },
+            {
+              "name": "Water",
+              "status": "safe",
+              "reason": "Essential ingredient"
+            },
+            {
+              "name": "Yeast",
+              "status": "safe",
+              "reason": "Natural leavening agent"
+            }
+          ]
+        },
+        {
+          "id": "scan_3",
+          "productName": "Energy Drink XL",
+          "brand": "PowerMax",
+          "image": "🥤",
+          "safetyScore": 42,
+          "isSafe": false,
+          "timestamp": "2024-11-07T14:30:00Z",
+          "ingredients": [
+            {
+              "name": "Carbonated Water",
+              "status": "safe",
+              "reason": "Standard beverage base"
+            },
+            {
+              "name": "High Fructose Corn Syrup",
+              "status": "risky",
+              "reason": "Linked to obesity and metabolic issues"
+            },
+            {
+              "name": "Artificial Colors",
+              "status": "risky",
+              "reason": "Synthetic dyes may cause allergic reactions"
+            },
+            {
+              "name": "Caffeine",
+              "status": "moderate",
+              "reason": "High amounts can cause health issues"
+            }
+          ]
+        },
+        {
+          "id": "scan_4",
+          "productName": "Greek Yogurt",
+          "brand": "Fage",
+          "image": "🥄",
+          "safetyScore": 92,
+          "isSafe": true,
+          "timestamp": "2024-11-07T11:00:00Z",
+          "ingredients": [
+            {
+              "name": "Grade A Pasteurized Milk",
+              "status": "safe",
+              "reason": "High-quality dairy protein"
+            },
+            {
+              "name": "Live Active Cultures",
+              "status": "safe",
+              "reason": "Beneficial probiotics for gut health"
+            }
+          ]
+        },
+        {
+          "id": "scan_5",
+          "productName": "Fruit Snack Pack",
+          "brand": "Snacky",
+          "image": "🍬",
+          "safetyScore": 38,
+          "isSafe": false,
+          "timestamp": "2024-11-06T16:45:00Z",
+          "ingredients": [
+            {
+              "name": "Corn Syrup",
+              "status": "risky",
+              "reason": "High sugar content, metabolic concerns"
+            },
+            {
+              "name": "Artificial Flavors",
+              "status": "moderate",
+              "reason": "Synthetic compounds, may cause sensitivities"
+            },
+            {
+              "name": "Red 40",
+              "status": "risky",
+              "reason": "Artificial coloring linked to hyperactivity"
+            }
+          ]
+        },
+        {
+          "id": "scan_6",
+          "productName": "Organic Honey",
+          "brand": "Bee Natural",
+          "image": "🍯",
+          "safetyScore": 98,
+          "isSafe": true,
+          "timestamp": "2024-11-06T09:20:00Z",
+          "ingredients": [
+            {
+              "name": "100% Pure Organic Honey",
+              "status": "safe",
+              "reason": "Natural sweetener with antioxidants"
+            }
+          ]
+        }
+      ]
+    },
+    "google-oauth2|100055966363588081512": {
+      "id": "google-oauth2|100055966363588081512",
+      "email": "mn0557804@gmail.com",
+      "name": "N M",
+      "picture": "https://lh3.googleusercontent.com/a/ACg8ocJNFb54iSPyeAYPBva9ivuLLng_djC5z7ctx6vQ72oLdBNPEQ=s96-c",
+      "createdAt": "2025-11-08T21:53:32.472Z",
+      "scans": [
+        {
+          "productName": "Organic Almond Milk",
+          "brand": "Nature's Best",
+          "image": "data:image/jpeg;base64,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",
+          "safetyScore": 85,
+          "isSafe": true,
+          "ingredients": [
+            {
+              "name": "Filtered Water",
+              "status": "safe",
+              "reason": "Pure and essential hydration base"
+            },
+            {
+              "name": "Organic Almonds",
+              "status": "safe",
+              "reason": "Healthy source of protein and good fats"
+            },
+            {
+              "name": "Sea Salt",
+              "status": "safe",
+              "reason": "Natural mineral, within healthy limits"
+            },
+            {
+              "name": "Gellan Gum",
+              "status": "moderate",
+              "reason": "Natural thickener, safe in small amounts"
+            },
+            {
+              "name": "Sunflower Lecithin",
+              "status": "safe",
+              "reason": "Natural emulsifier from sunflower seeds"
+            },
+            {
+              "name": "Vitamin D2",
+              "status": "safe",
+              "reason": "Essential nutrient for bone health"
+            },
+            {
+              "name": "Vitamin A",
+              "status": "safe",
+              "reason": "Important for vision and immune function"
+            },
+            {
+              "name": "Vitamin E",
+              "status": "safe",
+              "reason": "Antioxidant, supports cell health"
+            }
+          ],
+          "id": "scan_1762640915974",
+          "timestamp": "2025-11-08T22:28:35.974Z"
+        },
+        {
+          "productName": "Organic Almond Milk",
+          "brand": "Nature's Best",
+          "image": "data:image/jpeg;base64,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",
+          "safetyScore": 85,
+          "isSafe": true,
+          "ingredients": [
+            {
+              "name": "Filtered Water",
+              "status": "safe",
+              "reason": "Pure and essential hydration base"
+            },
+            {
+              "name": "Organic Almonds",
+              "status": "safe",
+              "reason": "Healthy source of protein and good fats"
+            },
+            {
+              "name": "Sea Salt",
+              "status": "safe",
+              "reason": "Natural mineral, within healthy limits"
+            },
+            {
+              "name": "Gellan Gum",
+              "status": "moderate",
+              "reason": "Natural thickener, safe in small amounts"
+            },
+            {
+              "name": "Sunflower Lecithin",
+              "status": "safe",
+              "reason": "Natural emulsifier from sunflower seeds"
+            },
+            {
+              "name": "Vitamin D2",
+              "status": "safe",
+              "reason": "Essential nutrient for bone health"
+            },
+            {
+              "name": "Vitamin A",
+              "status": "safe",
+              "reason": "Important for vision and immune function"
+            },
+            {
+              "name": "Vitamin E",
+              "status": "safe",
+              "reason": "Antioxidant, supports cell health"
+            }
+          ],
+          "id": "scan_1762640694597",
+          "timestamp": "2025-11-08T22:24:54.597Z"
+        },
+        {
+          "productName": "Organic Almond Milk",
+          "brand": "Nature's Best",
+          "image": "data:image/jpeg;base64,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",
+          "safetyScore": 85,
+          "isSafe": true,
+          "ingredients": [
+            {
+              "name": "Filtered Water",
+              "status": "safe",
+              "reason": "Pure and essential hydration base"
+            },
+            {
+              "name": "Organic Almonds",
+              "status": "safe",
+              "reason": "Healthy source of protein and good fats"
+            },
+            {
+              "name": "Sea Salt",
+              "status": "safe",
+              "reason": "Natural mineral, within healthy limits"
+            },
+            {
+              "name": "Gellan Gum",
+              "status": "moderate",
+              "reason": "Natural thickener, safe in small amounts"
+            },
+            {
+              "name": "Sunflower Lecithin",
+              "status": "safe",
+              "reason": "Natural emulsifier from sunflower seeds"
+            },
+            {
+              "name": "Vitamin D2",
+              "status": "safe",
+              "reason": "Essential nutrient for bone health"
+            },
+            {
+              "name": "Vitamin A",
+              "status": "safe",
+              "reason": "Important for vision and immune function"
+            },
+            {
+              "name": "Vitamin E",
+              "status": "safe",
+              "reason": "Antioxidant, supports cell health"
+            }
+          ],
+          "id": "scan_1762640694594",
+          "timestamp": "2025-11-08T22:24:54.594Z"
+        },
+        {
+          "productName": "Organic Almond Milk",
+          "brand": "Nature's Best",
+          "image": "🥛",
+          "safetyScore": 85,
+          "isSafe": true,
+          "ingredients": [
+            {
+              "name": "Filtered Water",
+              "status": "safe",
+              "reason": "Pure and essential hydration base"
+            },
+            {
+              "name": "Organic Almonds",
+              "status": "safe",
+              "reason": "Healthy source of protein and good fats"
+            },
+            {
+              "name": "Sea Salt",
+              "status": "safe",
+              "reason": "Natural mineral, within healthy limits"
+            },
+            {
+              "name": "Gellan Gum",
+              "status": "moderate",
+              "reason": "Natural thickener, safe in small amounts"
+            },
+            {
+              "name": "Sunflower Lecithin",
+              "status": "safe",
+              "reason": "Natural emulsifier from sunflower seeds"
+            },
+            {
+              "name": "Vitamin D2",
+              "status": "safe",
+              "reason": "Essential nutrient for bone health"
+            },
+            {
+              "name": "Vitamin A",
+              "status": "safe",
+              "reason": "Important for vision and immune function"
+            },
+            {
+              "name": "Vitamin E",
+              "status": "safe",
+              "reason": "Antioxidant, supports cell health"
+            }
+          ],
+          "id": "scan_1762638954713",
+          "timestamp": "2025-11-08T21:55:54.713Z"
+        },
+        {
+          "productName": "Organic Almond Milk",
+          "brand": "Nature's Best",
+          "image": "🥛",
+          "safetyScore": 85,
+          "isSafe": true,
+          "ingredients": [
+            {
+              "name": "Filtered Water",
+              "status": "safe",
+              "reason": "Pure and essential hydration base"
+            },
+            {
+              "name": "Organic Almonds",
+              "status": "safe",
+              "reason": "Healthy source of protein and good fats"
+            },
+            {
+              "name": "Sea Salt",
+              "status": "safe",
+              "reason": "Natural mineral, within healthy limits"
+            },
+            {
+              "name": "Gellan Gum",
+              "status": "moderate",
+              "reason": "Natural thickener, safe in small amounts"
+            },
+            {
+              "name": "Sunflower Lecithin",
+              "status": "safe",
+              "reason": "Natural emulsifier from sunflower seeds"
+            },
+            {
+              "name": "Vitamin D2",
+              "status": "safe",
+              "reason": "Essential nutrient for bone health"
+            },
+            {
+              "name": "Vitamin A",
+              "status": "safe",
+              "reason": "Important for vision and immune function"
+            },
+            {
+              "name": "Vitamin E",
+              "status": "safe",
+              "reason": "Antioxidant, supports cell health"
+            }
+          ],
+          "id": "scan_1762638954710",
+          "timestamp": "2025-11-08T21:55:54.710Z"
+        },
+        {
+          "productName": "Organic Almond Milk",
+          "brand": "Nature's Best",
+          "image": "🥛",
+          "safetyScore": 85,
+          "isSafe": true,
+          "ingredients": [
+            {
+              "name": "Filtered Water",
+              "status": "safe",
+              "reason": "Pure and essential hydration base"
+            },
+            {
+              "name": "Organic Almonds",
+              "status": "safe",
+              "reason": "Healthy source of protein and good fats"
+            },
+            {
+              "name": "Sea Salt",
+              "status": "safe",
+              "reason": "Natural mineral, within healthy limits"
+            },
+            {
+              "name": "Gellan Gum",
+              "status": "moderate",
+              "reason": "Natural thickener, safe in small amounts"
+            },
+            {
+              "name": "Sunflower Lecithin",
+              "status": "safe",
+              "reason": "Natural emulsifier from sunflower seeds"
+            },
+            {
+              "name": "Vitamin D2",
+              "status": "safe",
+              "reason": "Essential nutrient for bone health"
+            },
+            {
+              "name": "Vitamin A",
+              "status": "safe",
+              "reason": "Important for vision and immune function"
+            },
+            {
+              "name": "Vitamin E",
+              "status": "safe",
+              "reason": "Antioxidant, supports cell health"
+            }
+          ],
+          "id": "scan_1762638883577",
+          "timestamp": "2025-11-08T21:54:43.577Z"
+        },
+        {
+          "productName": "Organic Almond Milk",
+          "brand": "Nature's Best",
+          "image": "🥛",
+          "safetyScore": 85,
+          "isSafe": true,
+          "ingredients": [
+            {
+              "name": "Filtered Water",
+              "status": "safe",
+              "reason": "Pure and essential hydration base"
+            },
+            {
+              "name": "Organic Almonds",
+              "status": "safe",
+              "reason": "Healthy source of protein and good fats"
+            },
+            {
+              "name": "Sea Salt",
+              "status": "safe",
+              "reason": "Natural mineral, within healthy limits"
+            },
+            {
+              "name": "Gellan Gum",
+              "status": "moderate",
+              "reason": "Natural thickener, safe in small amounts"
+            },
+            {
+              "name": "Sunflower Lecithin",
+              "status": "safe",
+              "reason": "Natural emulsifier from sunflower seeds"
+            },
+            {
+              "name": "Vitamin D2",
+              "status": "safe",
+              "reason": "Essential nutrient for bone health"
+            },
+            {
+              "name": "Vitamin A",
+              "status": "safe",
+              "reason": "Important for vision and immune function"
+            },
+            {
+              "name": "Vitamin E",
+              "status": "safe",
+              "reason": "Antioxidant, supports cell health"
+            }
+          ],
+          "id": "scan_1762638883574",
+          "timestamp": "2025-11-08T21:54:43.574Z"
+        },
+        {
+          "productName": "Organic Almond Milk",
+          "brand": "Nature's Best",
+          "image": "🥛",
+          "safetyScore": 85,
+          "isSafe": true,
+          "ingredients": [
+            {
+              "name": "Filtered Water",
+              "status": "safe",
+              "reason": "Pure and essential hydration base"
+            },
+            {
+              "name": "Organic Almonds",
+              "status": "safe",
+              "reason": "Healthy source of protein and good fats"
+            },
+            {
+              "name": "Sea Salt",
+              "status": "safe",
+              "reason": "Natural mineral, within healthy limits"
+            },
+            {
+              "name": "Gellan Gum",
+              "status": "moderate",
+              "reason": "Natural thickener, safe in small amounts"
+            },
+            {
+              "name": "Sunflower Lecithin",
+              "status": "safe",
+              "reason": "Natural emulsifier from sunflower seeds"
+            },
+            {
+              "name": "Vitamin D2",
+              "status": "safe",
+              "reason": "Essential nutrient for bone health"
+            },
+            {
+              "name": "Vitamin A",
+              "status": "safe",
+              "reason": "Important for vision and immune function"
+            },
+            {
+              "name": "Vitamin E",
+              "status": "safe",
+              "reason": "Antioxidant, supports cell health"
+            }
+          ],
+          "id": "scan_1762638860858",
+          "timestamp": "2025-11-08T21:54:20.858Z"
+        },
+        {
+          "productName": "Organic Almond Milk",
+          "brand": "Nature's Best",
+          "image": "🥛",
+          "safetyScore": 85,
+          "isSafe": true,
+          "ingredients": [
+            {
+              "name": "Filtered Water",
+              "status": "safe",
+              "reason": "Pure and essential hydration base"
+            },
+            {
+              "name": "Organic Almonds",
+              "status": "safe",
+              "reason": "Healthy source of protein and good fats"
+            },
+            {
+              "name": "Sea Salt",
+              "status": "safe",
+              "reason": "Natural mineral, within healthy limits"
+            },
+            {
+              "name": "Gellan Gum",
+              "status": "moderate",
+              "reason": "Natural thickener, safe in small amounts"
+            },
+            {
+              "name": "Sunflower Lecithin",
+              "status": "safe",
+              "reason": "Natural emulsifier from sunflower seeds"
+            },
+            {
+              "name": "Vitamin D2",
+              "status": "safe",
+              "reason": "Essential nutrient for bone health"
+            },
+            {
+              "name": "Vitamin A",
+              "status": "safe",
+              "reason": "Important for vision and immune function"
+            },
+            {
+              "name": "Vitamin E",
+              "status": "safe",
+              "reason": "Antioxidant, supports cell health"
+            }
+          ],
+          "id": "scan_1762638860854",
+          "timestamp": "2025-11-08T21:54:20.854Z"
+        }
+      ]
+    }
+  }
+}
