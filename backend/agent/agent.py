@@ -4,6 +4,8 @@ from agents import Agent, Runner, trace, WebSearchTool, ModelSettings, function_
 from .models.search_models import WebSearchResult
 from .models.scorer_models import ScorerResult
 from .models.reccomender_models import ReccomenderResult
+from .tools.db_tools import mcp_params
+from agents.mcp import MCPServerStdio
 from .system_prompts import instructions
 from dotenv import load_dotenv
 
@@ -99,3 +101,26 @@ async def run_reccomender_agent(product_name: str, overall_score: float) -> Recc
     logger.info("Reccomender agent completed successfully")
     
     return result.final_output
+
+async def run_user_preferences_agent(preference_input: str) -> str:
+    """
+    Runs the user preferences agent to store or update user dietary preferences.
+
+    Args:
+        preference_input (str): The user preference input string.
+    Returns:
+        str: Confirmation message after storing/updating preferences.
+    """
+    logger.info("Running user preferences agent to update dietary preferences")
+    async with MCPServerStdio(params=mcp_params) as mcp_server:
+        agent = Agent(
+            name="UserPreferencesAgent",
+            instructions=instructions["USER_PREFERENCES_AGENT_INSTRUCTIONS"],
+            model="gpt-4.1-mini",
+            mcp_servers=[mcp_server]
+        )
+        result = await Runner.run(agent, preference_input)
+    
+    logger.info("User preferences agent completed successfully")
+    
+    return "User preferences updated successfully."

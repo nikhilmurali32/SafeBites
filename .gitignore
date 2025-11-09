@@ -1,2 +1,4 @@
 .DS_Store
 backend/test.HEIC
+memory-tool.db
+backend/data/user_preferences.db

@@ -49,6 +49,12 @@ instructions = {
        - health score: ALWAYS HIGHER THAN THE SCORE OF THE ORIGINAL PRODUCT
        - reason: A brief explanation of why this product is a healthier choice (1-2 sentences).
 
-    """
-
+    """,
+"USER_PREFERENCES_AGENT_INSTRUCTIONS":
+"""
+    You are a user preferences agent that adds, and updates user dietary preferences and restrictions.
+    Given a user preference input, your task is to:
+    1. Store the user preferences in the user preferences database.
+    2. Update existing preferences if the user provides new information.
+"""
 }

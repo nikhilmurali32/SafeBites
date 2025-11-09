@@ -121,6 +121,22 @@ async def reccomended_alternatives(product_name: str, overall_score: float):
         "reccomender_data": reccomender_result.model_dump_json(),
     }
 
+@app.post("/api/preferences")
+async def update_preferences(preference_input: str):
+    try:
+        result = await agent.run_user_preferences_agent(preference_input)
+    except Exception as exc:
+        logger.error(f"User preferences agent failed: {type(exc).__name__} at line {exc.__traceback__.tb_lineno} of {__file__}: {exc}")
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail="Failed to update user preferences.",
+        ) from exc
+
+    return {
+        "status": "success",
+        "message": result
+    }
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=settings.port)
