@@ -36,7 +36,7 @@ async def run_web_search_agent(product_name: str) -> WebSearchResult:
         WebSearchResult: The result containing a list of ingredients found in the product.
     """
     result = await Runner.run(web_search_agent, product_name)
-    return result
+    return result.final_output
 
 async def run_scorer_agent(ingredients: WebSearchResult) -> ScorerResult:
     """
@@ -50,4 +50,4 @@ async def run_scorer_agent(ingredients: WebSearchResult) -> ScorerResult:
     """
 
     result = await Runner.run(scorer_agent, ingredients.model_dump_json())
-    return result
+    return result.final_output
