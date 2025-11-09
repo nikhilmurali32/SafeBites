@@ -26,8 +26,8 @@ def extract_product_name(img_bytes: bytes) -> str:
     
     return response.text.strip()
 
-## Test function
-with open('./test.HEIC', 'rb') as f:
-    img_data = f.read()
-    product_name = extract_product_name(img_data)
-print(product_name)
+# ## Test function
+# with open('./test.HEIC', 'rb') as f:
+#     img_data = f.read()
+#     product_name = extract_product_name(img_data)
+# print(product_name)

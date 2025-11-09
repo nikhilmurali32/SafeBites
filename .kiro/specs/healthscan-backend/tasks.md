@@ -15,7 +15,7 @@
     - _Requirements: 1.1_
 
 - [ ] 3. Implement OpenAI Agents SDK tools
-  - [ ] 3.1 Create WebSearchTool in tools/search_tools.py
+  - [x] 3.1 Create WebSearchTool in tools/search_tools.py
     - Implement Tool class inheritance from OpenAI Agents SDK
     - Create search_by_name method for product information lookup
     - Add get_product_ingredients method for ingredient extraction
