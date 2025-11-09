@@ -9,8 +9,9 @@ import ScanButton from "./dashboard/ScanButton";
 import SafetyChart from "./dashboard/SafetyChart";
 import CameraScanner from "./CameraScanner";
 import ScanResult from "./ScanResult";
+import IngredientExplorer from "./IngredientExplorer";
 
-type DashboardView = "main" | "camera" | "result";
+type DashboardView = "main" | "camera" | "result" | "explorer";
 
 export default function Dashboard() {
   const { user } = useUser();
@@ -63,6 +64,10 @@ export default function Dashboard() {
     setCurrentView("result");
   };
 
+  const handleExploreIngredients = () => {
+    setCurrentView("explorer");
+  };
+
   const handleBackToDashboard = async () => {
     setCurrentView("main");
     setCapturedImage(null);
@@ -85,6 +90,15 @@ export default function Dashboard() {
     return (
       <ScanResult
         imageData={capturedImage}
+        onBack={handleBackToDashboard}
+      />
+    );
+  }
+
+  // Show Ingredient Explorer
+  if (currentView === "explorer") {
+    return (
+      <IngredientExplorer
         onBack={handleBackToDashboard}
       />
     );
@@ -118,24 +132,80 @@ export default function Dashboard() {
           <>
             {/* Main Grid Layout */}
             <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Left Column - Recent Scans (takes 2 columns on large screens) */}
+              {/* Left Column - Stats Overview (takes 1 column on large screens) */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
-                className="lg:col-span-2 space-y-6"
+                className="lg:col-span-1"
               >
-                <RecentScans scans={scans} />
+                <SafetyChart stats={stats} />
               </motion.div>
 
-              {/* Right Column - Stats & Actions */}
+              {/* Right Column - Recent Scans & Food Universe (takes 2 columns on large screens) */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
-                className="space-y-6"
+                className="lg:col-span-2 space-y-6"
               >
-                <SafetyChart stats={stats} />
+                <RecentScans scans={scans} />
+                
+                {/* Food Universe Card */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                  whileHover={{ scale: 1.01 }}
+                  className="bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-700 rounded-3xl shadow-xl p-8 text-white cursor-pointer relative overflow-hidden"
+                  onClick={handleExploreIngredients}
+                >
+                  {/* Starry background effect */}
+                  <div className="absolute inset-0 opacity-20">
+                    <div className="absolute top-4 right-12 w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                    <div className="absolute top-16 right-8 w-1 h-1 bg-white rounded-full"></div>
+                    <div className="absolute bottom-12 left-10 w-1.5 h-1.5 bg-white rounded-full animate-pulse"></div>
+                    <div className="absolute top-8 left-20 w-1 h-1 bg-white rounded-full"></div>
+                    <div className="absolute bottom-20 right-24 w-1 h-1 bg-white rounded-full"></div>
+                    <div className="absolute top-1/2 left-1/3 w-0.5 h-0.5 bg-white rounded-full"></div>
+                  </div>
+                  
+                  {/* Ambient glow */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-400/20 rounded-full blur-3xl"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="text-5xl">🌌</div>
+                        <div>
+                          <h3 className="text-2xl font-display font-bold">
+                            Your Food Universe
+                          </h3>
+                          <p className="text-indigo-200 text-sm mt-1">
+                            Explore your ingredient journey
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex -space-x-3">
+                        <div className="w-10 h-10 bg-green-400 rounded-full border-3 border-white shadow-lg shadow-green-500/50"></div>
+                        <div className="w-10 h-10 bg-yellow-400 rounded-full border-3 border-white shadow-lg shadow-yellow-500/50"></div>
+                        <div className="w-10 h-10 bg-red-400 rounded-full border-3 border-white shadow-lg shadow-red-500/50"></div>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <p className="text-indigo-100 text-base max-w-md">
+                        Discover connections between ingredients through an interactive constellation visualization
+                      </p>
+                      <motion.div 
+                        className="text-white font-semibold flex items-center gap-2"
+                        whileHover={{ x: 5 }}
+                      >
+                        Enter Universe 
+                        <span className="text-2xl">→</span>
+                      </motion.div>
+                    </div>
+                  </div>
+                </motion.div>
               </motion.div>
             </div>
           </>

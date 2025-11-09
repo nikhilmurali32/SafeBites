@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TrendingUp, Shield, AlertCircle } from "lucide-react";
+import { TrendingUp, Shield, AlertCircle, ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 interface SafetyChartProps {
   stats: {
@@ -11,31 +12,95 @@ interface SafetyChartProps {
   } | null;
 }
 
+type TimeRange = "today" | "week" | "month" | "overall";
+
+const mockStats = {
+  today: { safe: 3, risky: 1, total: 4 },
+  week: { safe: 8, risky: 3, total: 11 },
+  month: { safe: 32, risky: 12, total: 44 },
+  overall: { safe: 64, risky: 23, total: 87 },
+};
+
 export default function SafetyChart({ stats }: SafetyChartProps) {
-  const safeCount = stats?.safeToday || 0;
-  const riskyCount = stats?.riskyToday || 0;
-  const total = safeCount + riskyCount;
+  const [timeRange, setTimeRange] = useState<TimeRange>("week");
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const currentStats = mockStats[timeRange];
+  const safeCount = currentStats.safe;
+  const riskyCount = currentStats.risky;
+  const total = currentStats.total;
   const safePercentage = total > 0 ? (safeCount / total) * 100 : 0;
   const riskyPercentage = total > 0 ? (riskyCount / total) * 100 : 0;
 
+  const timeRangeLabels = {
+    today: "Today",
+    week: "This Week",
+    month: "This Month",
+    overall: "Overall",
+  };
+
   return (
     <div className="space-y-6">
-      {/* Today's Overview Card */}
+      {/* This Week's Overview Card */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.4 }}
         className="bg-white rounded-3xl shadow-lg p-6 border border-gray-100"
       >
-        <div className="flex items-center gap-2 mb-6">
-          <div className="p-2 bg-mint-100 rounded-lg">
-            <TrendingUp className="w-5 h-5 text-mint-600" />
+        {/* Header with Dropdown */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <div className="p-2 bg-mint-100 rounded-lg">
+              <TrendingUp className="w-5 h-5 text-mint-600" />
+            </div>
+            <div>
+              <h3 className="font-display font-bold text-gray-900">
+                {timeRangeLabels[timeRange]}'s Overview
+              </h3>
+              <p className="text-xs text-gray-500">Safe vs Risky items</p>
+            </div>
           </div>
-          <div>
-            <h3 className="font-display font-bold text-gray-900">
-              Today's Overview
-            </h3>
-            <p className="text-xs text-gray-500">Safe vs Risky items</p>
+
+          {/* Time Range Dropdown */}
+          <div className="relative">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowDropdown(!showDropdown)}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-xl border border-gray-200 transition-colors"
+            >
+              <span className="text-sm font-medium text-gray-700">
+                {timeRangeLabels[timeRange]}
+              </span>
+              <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${showDropdown ? 'rotate-180' : ''}`} />
+            </motion.button>
+
+            {/* Dropdown Menu */}
+            {showDropdown && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="absolute right-0 mt-2 w-40 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-10"
+              >
+                {(Object.keys(timeRangeLabels) as TimeRange[]).map((range) => (
+                  <button
+                    key={range}
+                    onClick={() => {
+                      setTimeRange(range);
+                      setShowDropdown(false);
+                    }}
+                    className={`w-full text-left px-4 py-3 text-sm transition-colors ${
+                      range === timeRange
+                        ? 'bg-mint-50 text-mint-700 font-semibold'
+                        : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    {timeRangeLabels[range]}
+                  </button>
+                ))}
+              </motion.div>
+            )}
           </div>
         </div>
 
@@ -167,21 +232,6 @@ export default function SafetyChart({ stats }: SafetyChartProps) {
             </div>
           </motion.div>
         </div>
-      </motion.div>
-
-      {/* Quick Tips Card */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8 }}
-        className="bg-gradient-to-br from-mint-500 to-mint-600 rounded-3xl shadow-lg p-6 text-white"
-      >
-        <h3 className="font-display font-bold text-lg mb-2">
-          🎯 Daily Tip
-        </h3>
-        <p className="text-sm text-mint-50 leading-relaxed">
-          You're doing great! {safePercentage > 70 ? "Keep up the healthy choices! 🌟" : "Try to scan more items before purchasing to make informed decisions."}
-        </p>
       </motion.div>
     </div>
   );
