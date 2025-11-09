@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import HealthyFood from './public/HealthyFood.png';
 import Logo from './public/Logo.png';
@@ -34,15 +33,17 @@ export default function SignUpSheet() {
     if (!validate()) return;
     try {
       setLoading(true);
-      await new Promise((r) => setTimeout(r, 600));
-      alert('Signed up! (stub)');
+      // Redirect to Auth0 sign-up/login
+      // Auth0 will handle the registration flow
+      window.location.href = '/api/auth/login';
     } finally {
       setLoading(false);
     }
   };
 
-  const signInWithGoogle = async () => {
-    alert('Google sign-in (stub)');
+  // Auth0 login handler
+  const handleAuth0Login = () => {
+    window.location.href = '/api/auth/login';
   };
 
   return (
@@ -70,18 +71,15 @@ export default function SignUpSheet() {
           </div>
 
           <div className="px-10 pb-12">
-            {/* Google button */}
+            {/* Auth0 login button */}
             <button
-              onClick={signInWithGoogle}
+              onClick={handleAuth0Login}
               className="w-full inline-flex items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3 font-medium shadow-sm hover:bg-gray-50 transition"
             >
-              <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true">
-                <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 31.9 29.3 35 24 35 16.8 35 11 29.2 11 22s5.8-13 13-13c3.3 0 6.3 1.2 8.6 3.2l5.7-5.7C34.6 3.4 29.6 1.5 24 1.5 11.7 1.5 1.5 11.7 1.5 24S11.7 46.5 24 46.5 46.5 36.3 46.5 24c0-1.1-.1-2.2-.3-3.5z"/>
-                <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.9 16.1 19 13 24 13c3.3 0 6.3 1.2 8.6 3.2l5.7-5.7C34.6 6.4 29.6 4.5 24 4.5 15.3 4.5 7.8 9.6 6.3 14.7z"/>
-                <path fill="#4CAF50" d="M24 43.5c5.2 0 10-2 13.5-5.2l-6.2-5.1C29.2 34.8 26.8 36 24 36c-5.2 0-9.6-3.4-11.2-8.1l-6.6 5.1C8.7 39.2 15.8 43.5 24 43.5z"/>
-                <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3C34.9 31.1 30 35 24 35c-5.2 0-9.6-3.4-11.2-8.1l-6.6 5.1C8.7 39.2 15.8 43.5 24 43.5 34.5 43.5 43.6 35 43.6 24c0-1.1-.1-2.2-.3-3.5z"/>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#10B981"/>
               </svg>
-              Continue with Google
+              Continue with Auth0
             </button>
 
             <div className="relative my-8">
@@ -140,9 +138,12 @@ export default function SignUpSheet() {
               {/* More spacing before log-in text */}
               <p className="text-center text-sm text-gray-700 mt-6">
                 Already have an account?{' '}
-                <Link href="/login" className="text-emerald-600 font-semibold hover:underline">
+                <button
+                  onClick={handleAuth0Login}
+                  className="text-emerald-600 font-semibold hover:underline"
+                >
                   Log In
-                </Link>
+                </button>
               </p>
             </form>
           </div>

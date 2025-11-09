@@ -633,7 +633,10 @@
           "id": "scan_1762638860854",
           "timestamp": "2025-11-08T21:54:20.854Z"
         }
-      ]
+      ],
+      "allergies": [],
+      "dietGoals": [],
+      "avoidIngredients": []
     }
   }
 }
