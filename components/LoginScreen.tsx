@@ -35,7 +35,7 @@ export default function SignUpSheet() {
       setLoading(true);
       // Redirect to Auth0 sign-up/login
       // Auth0 will handle the registration flow
-      window.location.href = '/api/auth/login';
+      window.location.href="/api/auth/login";
     } finally {
       setLoading(false);
     }
