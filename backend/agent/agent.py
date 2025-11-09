@@ -1,9 +1,17 @@
 import os
+import logging
 from agents import Agent, Runner, trace, WebSearchTool, ModelSettings, function_tool
 from .models.search_models import WebSearchResult
 from .models.scorer_models import ScorerResult
 from .system_prompts import instructions
 from dotenv import load_dotenv
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 load_dotenv(override=True)    
 open_ai_api_key = os.getenv("OPEN_AI_API_KEY")
@@ -35,19 +43,28 @@ async def run_web_search_agent(product_name: str) -> WebSearchResult:
     Returns:
         WebSearchResult: The result containing a list of ingredients found in the product.
     """
+    logger.info(f"Running web search agent for product: {product_name}")
+    
     result = await Runner.run(web_search_agent, product_name)
+    
+    logger.info("Web search agent completed successfully")
+    
     return result.final_output
 
-async def run_scorer_agent(ingredients: WebSearchResult) -> ScorerResult:
+async def run_scorer_agent(ingredients: str) -> ScorerResult:
     """
     Runs the scorer agent to evaluate the relevance and quality of ingredient information.
 
     Args:
-        ingredients (WebSearchResult): The result containing a list of ingredients with their descriptions.
+        ingredients (str): JSON string containing a list of ingredients with their descriptions.
 
     Returns:
         ScorerResult: The result containing the relevance scores for each ingredient.
     """
+    logger.info("Running scorer agent to evaluate product safety")
 
-    result = await Runner.run(scorer_agent, ingredients.model_dump_json())
+    result = await Runner.run(scorer_agent, ingredients)
+    
+    logger.info("Scorer agent completed successfully")
+    
     return result.final_output
