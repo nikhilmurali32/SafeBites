@@ -100,15 +100,26 @@ async def analyze_product(image: UploadFile = File(...)):
         "scoring_data": scoring_result,
     }
 
-@app.get("/api/history")
-async def get_history():
-    """Get analysis history - TODO: Implement in task 7.3"""
-    return {"message": "History endpoint - coming soon!"}
+@app.get("/api/reccomendations/{product_name}/{overall_score}")
+async def reccomended_alternatives(product_name: str, overall_score: float):
+    """Get reccomended alternatives for a product based on its overall score."""
+    logger.info(f"API REQUEST - /api/reccomended_alternatives - Getting alternatives for {product_name} with score {overall_score}")
+    
+    try:
+        reccomender_result = await agent.run_reccomender_agent(product_name, overall_score)
+    except Exception as exc:
+        logger.error(f"Reccomender agent failed: {type(exc).__name__} at line {exc.__traceback__.tb_lineno} of {__file__}: {exc}")
+        raise HTTPException(
+            status_code=status.HTTP_502_BAD_GATEWAY,
+            detail="Failed to retrieve reccomender data.",
+        ) from exc
 
-@app.get("/api/analysis/{analysis_id}")
-async def get_analysis(analysis_id: str):
-    """Get specific analysis - TODO: Implement in task 7.4"""
-    return {"message": f"Analysis {analysis_id} endpoint - coming soon!"}
+    logger.info("API REQUEST - /api/reccomended_alternatives - Alternatives retrieved successfully")
+
+    return {
+        "status": "success",
+        "reccomender_data": reccomender_result.model_dump_json(),
+    }
 
 if __name__ == "__main__":
     import uvicorn

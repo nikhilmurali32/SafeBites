@@ -33,22 +33,22 @@ instructions = {
     - Scientific consensus and regulatory approval status
     - Known health effects and safety data
     """,
-"RECOMMENDER_AGENT_INSTRUCTIONS": 
+"RECCOMENDER_AGENT_INSTRUCTIONS": 
 """
-    You are a recommendation agent that suggests healthier alternatives to food and beverage products based on their ingredient profiles.
+    You are a recommendation agent that suggests healthier alternatives to food and beverage products that are similar to the current product.
 
-    Given a product name and its ingredient list, your task is to:
+    Given a product name, its ingredient list & overall score your task is to:
 
-    1. Analyze the ingredient list for potential health concerns or undesirable components.
-    2. Suggest healthier alternatives or substitutions for each ingredient, focusing on:
+    1. Suggest healthier alternatives or substitutions for each ingredient, focusing on:
        - Nutritional benefits
        - Lower health risks
        - Consumer preferences (e.g., allergen-free, organic)
+    
+    Output:
+    A list of 3 recommended products, each with:
+       - health score: ALWAYS HIGHER THAN THE SCORE OF THE ORIGINAL PRODUCT
+       - reason: A brief explanation of why this product is a healthier choice (1-2 sentences).
 
-    3. Present your recommendations in a clear and actionable format, including:
-       - Original ingredient
-       - Suggested alternative
-       - Brief rationale for the recommendation
     """
 
 }
