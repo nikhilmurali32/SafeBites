@@ -20,7 +20,7 @@ export async function GET() {
       user = getUserByEmail(auth0User.email);
     }
     
-    // If still not found, create new user
+    // If still not found, create new user in local DB
     if (!user) {
       user = upsertUser({
         id: auth0User.sub,
@@ -28,6 +28,23 @@ export async function GET() {
         name: auth0User.name || 'User',
         picture: auth0User.picture,
       });
+    }
+    
+    // Also ensure user exists in backend
+    try {
+      const { createOrUpdateUser } = await import('@/lib/backendApi');
+      await createOrUpdateUser({
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        picture: user.picture,
+        allergies: user.allergies,
+        dietGoals: user.dietGoals,
+        avoidIngredients: user.avoidIngredients,
+      });
+    } catch (backendError) {
+      console.error('Failed to sync user to backend:', backendError);
+      // Continue even if backend sync fails
     }
     
     return NextResponse.json({ user });

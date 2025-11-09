@@ -6,6 +6,7 @@ import LoginScreen from "@/components/LoginScreen";
 import OnboardingFlow from "@/components/OnboardingFlow";
 import Dashboard from "@/components/Dashboard";
 import { motion } from "framer-motion";
+import { checkBackendConnection } from "@/lib/backendApi";
 
 type AppState = "loading" | "login" | "onboarding" | "dashboard";
 
@@ -13,6 +14,19 @@ export default function Home() {
   const { user, isLoading } = useUser();
   const [appState, setAppState] = useState<AppState>("loading");
   const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(false);
+
+  // Check backend connection on app initialization
+  useEffect(() => {
+    const checkConnection = async () => {
+      const isConnected = await checkBackendConnection();
+      if (isConnected) {
+        console.log('✅ Backend connection successful');
+      } else {
+        console.warn('⚠️ Backend connection failed - some features may not work');
+      }
+    };
+    checkConnection();
+  }, []);
 
   useEffect(() => {
     if (isLoading) {

@@ -30,23 +30,36 @@ export default function Dashboard() {
   }, [user]);
 
   const fetchUserData = async () => {
+    if (!user?.sub) return;
+    
     try {
       setIsLoading(true);
       
-      // Fetch user info
+      // First ensure user exists in backend (via Next.js API which handles Auth0)
       const userResponse = await fetch('/api/user');
       const userData = await userResponse.json();
       setUserData(userData.user);
       
-      // Fetch recent scans
-      const scansResponse = await fetch('/api/user/scans?limit=10');
-      const scansData = await scansResponse.json();
-      setScans(scansData.scans || []);
+      // Import backend API functions
+      const { getUserScans, getUserStats } = await import('@/lib/backendApi');
       
-      // Fetch stats
-      const statsResponse = await fetch('/api/user/stats');
-      const statsData = await statsResponse.json();
-      setStats(statsData.stats);
+      // Fetch recent scans from backend
+      try {
+        const scansData = await getUserScans(user.sub, 10);
+        setScans(scansData.scans || []);
+      } catch (error) {
+        console.error('Error fetching scans from backend:', error);
+        setScans([]);
+      }
+      
+      // Fetch stats from backend
+      try {
+        const statsData = await getUserStats(user.sub);
+        setStats(statsData?.stats || null);
+      } catch (error) {
+        console.error('Error fetching stats from backend:', error);
+        setStats(null);
+      }
       
     } catch (error) {
       console.error('Error fetching user data:', error);

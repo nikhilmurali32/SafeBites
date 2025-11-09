@@ -20,10 +20,29 @@ export default function BetterAlternatives({
   alternatives,
   currentScore,
 }: BetterAlternativesProps) {
-  // Filter to show only better alternatives
-  const betterOptions = alternatives.filter((alt) => alt.score >= currentScore);
+  console.log('BetterAlternatives received:', {
+    alternatives,
+    alternativesCount: alternatives.length,
+    currentScore,
+    firstAlt: alternatives[0]
+  });
 
-  if (betterOptions.length === 0) {
+  // Filter to show only better alternatives (score >= currentScore)
+  // But also show all if none are better, or show all recommendations
+  const betterOptions = alternatives.filter((alt) => alt.score >= currentScore);
+  
+  // If no better options, show all recommendations anyway (they're still alternatives)
+  const optionsToShow = betterOptions.length > 0 ? betterOptions : alternatives;
+
+  console.log('BetterAlternatives filtering:', {
+    betterOptionsCount: betterOptions.length,
+    optionsToShowCount: optionsToShow.length,
+    allScores: alternatives.map(a => a.score),
+    currentScore
+  });
+
+  if (optionsToShow.length === 0) {
+    console.warn('BetterAlternatives: No options to show');
     return null;
   }
 
@@ -44,7 +63,8 @@ export default function BetterAlternatives({
               Better Alternatives
             </h3>
             <p className="text-sm text-gray-600">
-              {betterOptions.length} healthier option{betterOptions.length !== 1 ? "s" : ""} found
+              {optionsToShow.length} alternative{optionsToShow.length !== 1 ? "s" : ""} found
+              {betterOptions.length > 0 && ` (${betterOptions.length} better than current)`}
             </p>
           </div>
         </div>
@@ -52,7 +72,7 @@ export default function BetterAlternatives({
 
       {/* Horizontal Carousel */}
       <div className="flex gap-4 overflow-x-auto pb-4 custom-scrollbar">
-        {betterOptions.map((alternative, index) => (
+        {optionsToShow.map((alternative, index) => (
           <AlternativeCard
             key={alternative.id}
             alternative={alternative}

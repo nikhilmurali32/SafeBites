@@ -1,0 +1,35 @@
+{
+  "google-oauth2|113234256403927318578": {
+    "id": "google-oauth2|113234256403927318578",
+    "email": "paikrao.aditya@gmail.com",
+    "name": "Aditya Paikrao",
+    "picture": "https://lh3.googleusercontent.com/a/ACg8ocJCGPCXuyijHAtnjZVe2jgpqsjskYivFUk1eOQUUbUwZYNo-m8=s96-c",
+    "allergies": null,
+    "dietGoals": null,
+    "avoidIngredients": null,
+    "createdAt": null,
+    "scans": []
+  },
+  "google-oauth2|109433529398095670093": {
+    "id": "google-oauth2|109433529398095670093",
+    "email": "aditya.paikrao@gmail.com",
+    "name": "Aditya Paikrao",
+    "picture": "https://lh3.googleusercontent.com/a/ACg8ocJehr4DpGaAaOk29SMh2dHLVKXHOLIlI3SmYhErsD4hbn1VFQ=s96-c",
+    "allergies": null,
+    "dietGoals": null,
+    "avoidIngredients": null,
+    "createdAt": null,
+    "scans": []
+  },
+  "google-oauth2|110007695794599851414": {
+    "id": "google-oauth2|110007695794599851414",
+    "email": "paikraoaditya008@gmail.com",
+    "name": "Aditya Paikrao",
+    "picture": "https://lh3.googleusercontent.com/a/ACg8ocKheACIOazEmYPJ5VLqXeIGiirPiN6PDXWCRp5IrmE8rX4p4Q=s96-c",
+    "allergies": null,
+    "dietGoals": null,
+    "avoidIngredients": null,
+    "createdAt": null,
+    "scans": []
+  }
+}

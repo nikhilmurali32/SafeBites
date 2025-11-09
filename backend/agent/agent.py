@@ -1,5 +1,6 @@
 import os
 import logging
+from typing import Optional
 from agents import Agent, Runner, trace, WebSearchTool, ModelSettings, function_tool
 from .models.search_models import WebSearchResult
 from .models.scorer_models import ScorerResult
@@ -32,7 +33,7 @@ web_search_agent = Agent(
 scorer_agent = Agent(
     name="ScorerAgent",
     instructions=instructions["SCORER_AGENT_INSTRUCTIONS"],
-    model="gpt-4.1-mini",
+    model="gpt-5-mini",
     output_type=ScorerResult
 )
 
@@ -63,19 +64,34 @@ async def run_web_search_agent(product_name: str) -> WebSearchResult:
     
     return result.final_output
 
-async def run_scorer_agent(ingredients: str) -> ScorerResult:
+async def run_scorer_agent(ingredients: str, user_preferences: Optional[dict] = None) -> ScorerResult:
     """
     Runs the scorer agent to evaluate the relevance and quality of ingredient information.
 
     Args:
         ingredients (str): JSON string containing a list of ingredients with their descriptions.
+        user_preferences (dict, optional): User preferences including allergies, dietGoals, and avoidIngredients.
 
     Returns:
         ScorerResult: The result containing the relevance scores for each ingredient.
     """
     logger.info("Running scorer agent to evaluate product safety")
+    
+    # Build input with user preferences if provided
+    input_data = ingredients
+    if user_preferences:
+        preferences_text = "USER PREFERENCES:\n"
+        if user_preferences.get("allergies"):
+            preferences_text += f"- Allergies: {', '.join(user_preferences['allergies'])}\n"
+        if user_preferences.get("dietGoals"):
+            preferences_text += f"- Diet Goals: {', '.join(user_preferences['dietGoals'])}\n"
+        if user_preferences.get("avoidIngredients"):
+            preferences_text += f"- Ingredients to Avoid: {', '.join(user_preferences['avoidIngredients'])}\n"
+        
+        input_data = f"{preferences_text}\n{ingredients}"
+        logger.info(f"Scorer agent input includes user preferences: {user_preferences}")
 
-    result = await Runner.run(scorer_agent, ingredients)
+    result = await Runner.run(scorer_agent, input_data)
     
     logger.info("Scorer agent completed successfully")
     
