@@ -1,8 +1,9 @@
 # SafeBites - AI-Powered Food Safety Analyzer
 
 <div align="center">
+  
+![WhatsApp Image 2025-11-09 at 04 36 54_caa1fe8e](https://github.com/user-attachments/assets/3b257410-d82c-4dbc-9def-072631d58740)
 
-![SafeBites Logo](frontend/components/public/Logo.png)
 
 **A comprehensive AI-powered application that helps users make healthier food choices by analyzing product labels, checking for unsafe ingredients, and recommending safer alternatives.**
 
