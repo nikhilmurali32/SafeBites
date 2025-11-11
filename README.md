@@ -45,10 +45,6 @@ SafeBites is a full-stack application that combines modern web technologies with
 
 The SafeBites system follows a sophisticated multi-agent architecture that processes product images through several stages:
 
-![Backend Architecture Diagram](docs/images/backend-architecture.png)
-
-*Note: Please add the architecture diagram image to `docs/images/backend-architecture.png`*
-
 ### Architecture Flow
 
 #### 1. **User Input & Authentication**
@@ -74,6 +70,9 @@ The SafeBites system follows a sophisticated multi-agent architecture that proce
 - If product is not in catalog, **Web Search Agent (ADK)** performs web searches
 - Web Search Agent returns ingredient descriptions to Retriever Agent
 - Retriever Agent outputs enriched ingredient descriptions to Scorer Agent
+  
+  ![food-app-srch](https://github.com/user-attachments/assets/ef2dfefc-32e1-4120-800f-47104e0e0df5)
+
 
 #### 4. **Scoring & Recommendation Loop**
 - **Scorer Agent (ADK)** receives ingredient descriptions
