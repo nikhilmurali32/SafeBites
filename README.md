@@ -422,23 +422,6 @@ uvicorn main:app --reload --port 8000  # Development with auto-reload
 
 See `.env.example` files in respective directories for required environment variables.
 
-## 🎨 Design Philosophy
-
-SafeBites follows a clean, intelligent, and health-focused design:
-
-- **Minimalist Aesthetic**: Inspired by Apple Health
-- **Clear Hierarchy**: Information architecture like Notion
-- **Engaging UX**: Interactive elements like Duolingo
-- **Accessibility**: WCAG compliant components
-- **Responsive**: Mobile-first approach
-
-### Color Palette
-
-- **Primary**: Mint green gradients (`#22c55e`)
-- **Safe**: Green tones
-- **Moderate**: Yellow/Amber tones
-- **Risky**: Red/Orange tones
-- **Neutrals**: Gray scale for text and borders
 
 ## 🔮 Future Enhancements
 
@@ -463,21 +446,9 @@ Contributions are welcome! Please follow these guidelines:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-### Development Standards
-
-- Follow TypeScript best practices
-- Write meaningful commit messages
-- Add tests for new features
-- Update documentation as needed
-- Maintain code style consistency
-
 ## 📄 License
 
 Private project - All rights reserved
-
-## 👥 Authors
-
-- **Nikhi Murali** - [@nikhilmurali32](https://github.com/nikhilmurali32)
 
 ## 🙏 Acknowledgments
 
