@@ -55,9 +55,15 @@ The SafeBites system follows a sophisticated multi-agent architecture that proce
 - User authenticates via **Auth0**
 - User provides a **photo** of a product label
 
+  <img width="1440" height="900" alt="login" src="https://github.com/user-attachments/assets/02ad7f5c-a15e-4197-828b-bf6a9d26f3c0" />
+
+
 #### 2. **Optical Character Recognition (OCR)**
 - Photo is processed by **OCR (Gemini)** to extract text and ingredient lists
 - Extracted text is passed to the agent system
+
+  <img width="1440" height="900" alt="prod-scan" src="https://github.com/user-attachments/assets/7e1d600e-94c9-4b1a-ac44-e04fe10cde0f" />
+
 
 #### 3. **Data Retrieval & Enrichment**
 - **Retriever Agent (ADK)** receives the extracted ingredient data
