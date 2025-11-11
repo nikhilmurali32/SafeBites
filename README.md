@@ -57,6 +57,8 @@ The SafeBites system follows a sophisticated multi-agent architecture that proce
 
   <img width="1440" height="900" alt="login" src="https://github.com/user-attachments/assets/02ad7f5c-a15e-4197-828b-bf6a9d26f3c0" />
 
+  <img width="1440" height="900" alt="dashboard" src="https://github.com/user-attachments/assets/132f923d-172e-46b2-99b7-cbc978fdfb3d" />
+
 
 #### 2. **Optical Character Recognition (OCR)**
 - Photo is processed by **OCR (Gemini)** to extract text and ingredient lists
@@ -79,6 +81,10 @@ The SafeBites system follows a sophisticated multi-agent architecture that proce
   - Scorer Agent sends feedback to Recommender Agent
   - Recommender Agent sends recommended items back to Scorer Agent
   - Process refines recommendations based on safety scores
+    
+  ![scan res](https://github.com/user-attachments/assets/93f2a9cf-5aae-434b-a6c9-a7bce109bf42)
+  
+  ![scan res -2](https://github.com/user-attachments/assets/25ad6385-c51e-4ebd-b5e7-e19b7de79023)
 
 #### 5. **Final Output**
 - **Scorer Agent** outputs final result:
